@@ -1,0 +1,38 @@
+Steps from https://spring.io/guides/gs/spring-boot-docker/
+
+Configuring Docker on Mac OSX:
+https://docs.docker.com/installation/mac/
+
+To run normally:
+
+mvn clean package && java -jar target/docker-demo-1.0-SNAPSHOT.jar
+
+To run in a docker container:
+
+export DOCKER_HOST=tcp://192.168.59.103:2376
+export DOCKER_CERT_PATH=/Users/[username]/.boot2docker/certs/boot2docker-vm
+export DOCKER_TLS_VERIFY=1
+
+mvn package docker:build
+
+docker run -p 8080:8080 -t springio/docker-demo
+
+Navigate to http://192.168.59.103:8080/
+
+Notes on boot2docker:
+
+Start boot2docker.app or:
+/usr/local/bin/boot2docker init
+/usr/local/bin/boot2docker up
+
+Retrieve the IP:
+boot2docker ip
+
+Retrieve current status:
+boot2docker status
+
+Retrieve version:
+docker version
+
+Stop:
+boot2docker stop
